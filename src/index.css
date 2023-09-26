@@ -1,0 +1,51 @@
+
+body {
+  background: linear-gradient(to top, rgb(2,0,36), rgb(2,0,36), rgb(2,0,36)); 
+  color: white;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Nav */
+.custom-nav .collapse{
+  justify-content: flex-end;
+}
+
+/* Home */
+
+.home {
+  color: #ffffff;
+}
+
+/* Login */
+
+.login {
+  color: white;
+  min-height: 100vh;
+  align-items: center;
+}
+
+.login h6{
+  margin-top: 15px;
+}
+
+/* Register */
+
+.register {
+  color: white;
+  min-height: 100vh;
+  align-items: center;
+}
+
+/* Gallery */
+
+.imagesGallery {
+  width: 250px; 
+  height: 250px; 
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin: 20px 10px;
+  object-fit: cover;
+  object-position: top center; 
+}
