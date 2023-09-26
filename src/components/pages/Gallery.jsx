@@ -1,5 +1,7 @@
+
 import useFetchData from '../../hooks/useFetchData';
 import CustomNav from '../CustomNav';
+
 
 const Gallery = () => {
   const imagesData = useFetchData('http://localhost:1337/api/images?populate=*');
@@ -15,7 +17,7 @@ const Gallery = () => {
       (
         <div key={item.id}>
           <div>
-            <h1 style={{color:'white'}}>{item.attributes.title}</h1>
+            <h1 style={{color:'white', padding:'20px 0'}}>{item.attributes.title}</h1>
           </div>
           <div>
             {item.attributes.image.data.map((imageData, index) => (
@@ -24,7 +26,6 @@ const Gallery = () => {
                 src={`http://localhost:1337${imageData.attributes.url}`}
                 alt="post image"
                 className='imagesGallery'
-     
               />
             ))}
           </div>
