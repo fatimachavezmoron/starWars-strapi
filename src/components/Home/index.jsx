@@ -1,12 +1,10 @@
 
-import CustomNav from '../CustomNav'
 import { userData } from '../../helpers';
 import useFetchData from '../../hooks/useFetchData';
 
 const Home = () => {
   const {username} = userData();
   const postsData = useFetchData('http://localhost:1337/api/posts?populate=*');
-  // console.log(postsData.result);
 
   if (postsData.loading) return <p>Loading...</p>;
   if (postsData.error) return <p>Error</p>;
@@ -15,7 +13,6 @@ const Home = () => {
   return (
     <>
       <div className='home'>
-        <CustomNav />
         <div >
           <h2 style={{ marginTop: '20px'}}>Welcome {username} !</h2>
         </div>

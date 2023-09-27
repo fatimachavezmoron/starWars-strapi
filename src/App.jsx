@@ -8,11 +8,13 @@ import { ToastContainer } from "react-toastify";
 import { Protector } from "./helpers";
 import Gallery from './components/pages/Gallery'
 import Footer from "./components/pages/Footer";
+import CustomNav from "./components/CustomNav";
 
 function App() {
   return (
     <Container >
       <BrowserRouter>
+      <CustomNav />
         <Routes>
           <Route path="/" element={<Protector Component={Home} />} />
           <Route path="/login" element={<Login />} />

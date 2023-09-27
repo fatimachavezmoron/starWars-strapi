@@ -17,6 +17,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  background-color: black;
 }
 
 .custom-nav .collapse{
@@ -66,9 +67,29 @@ body {
 
 /* Gallery */
 
+.galleryCont {
+  display: flex;
+}
+
+.imageCont {
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
+}
+
 .contImageGallery {
   margin-bottom: 50px;
-  width: 500px;
+  width: 480px;
+}
+
+.textCont {
+ margin-left: 190px;
+ margin-top: 70px;
+ text-align: justify;
+}
+
+.textCont h1 {
+  margin-bottom: 50px;
 }
 
 .myImg {
