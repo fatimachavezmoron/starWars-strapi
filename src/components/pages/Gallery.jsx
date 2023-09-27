@@ -1,40 +1,49 @@
-
-import useFetchData from '../../hooks/useFetchData';
+import React, { useState, useEffect, useCallback } from 'react';
 import CustomNav from '../CustomNav';
-
+import ImageGallery from 'react-image-gallery';
 
 const Gallery = () => {
-  const imagesData = useFetchData('http://localhost:1337/api/images?populate=*');
+  const [parsedData, setParsedData] = useState([]);
 
-  console.log(imagesData.result);
-  if (imagesData.loading) return <p>Loading...</p>;
-  if (imagesData.error) return <p>Error</p>;
-  
+  const fetchData = useCallback(async () => {
+    try {
+      const res = await fetch('http://localhost:1337/api/images?populate=*');
+      const json = await res.json();
+      const newData = json.data.reduce((acc, cur) => {
+        const imagesArray = cur.attributes.image.data.reduce((acc, cur) => {
+          return [
+            ...acc,
+            {
+              original: `http://localhost:1337${cur.attributes.url}`,
+              thumbnail: `http://localhost:1337${cur.attributes.formats.thumbnail.url}`,
+            },
+          ];
+        }, []);
+        return [...acc, { title: cur.attributes.title, images: imagesArray }];
+      }, []);
+      setParsedData(newData);
+    } catch (err) {
+      console.log('error', err);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   return (
     <>
-    <CustomNav />
-    {imagesData.result && imagesData.result.data && imagesData.result.data.map(item =>
-      (
+      <CustomNav />
+      {parsedData.map((item) => (
         <div key={item.id}>
-          <div>
-            <h1 style={{color:'white', padding:'20px 0'}}>{item.attributes.title}</h1>
-          </div>
-          <div>
-            {item.attributes.image.data.map((imageData, index) => (
-              <img
-                key={index}
-                src={`http://localhost:1337${imageData.attributes.url}`}
-                alt="post image"
-                className='imagesGallery'
-              />
-            ))}
+          <h1 style={{ color: 'white', padding: '20px 0' }}>{item.title}</h1>
+          <div className='contImageGallery'>
+            <ImageGallery items={item.images} />
           </div>
         </div>
-      )
-      
-      )}
+      ))}
     </>
-  )
-}
+  );
+};
 
 export default Gallery;

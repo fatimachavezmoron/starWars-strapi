@@ -1,21 +1,47 @@
+@import "react-image-gallery/styles/css/image-gallery.css";
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,500&family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Kanit:wght@100;200;300;400;500;600;700;800&family=Montserrat:wght@100;200;300;400;500;600;700&family=Pacifico&family=Poppins:wght@100;200;300;400;500;600;700&family=Roboto+Mono:wght@100;200;300;400;500;600&family=Teko:wght@300;400;500;600&family=Vollkorn:wght@400;500;600;700&display=swap');
 
-body {
-  background: linear-gradient(to top, rgb(2,0,36), rgb(2,0,36), rgb(2,0,36)); 
-  color: white;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+* {
+  font-family: 'Poppins', system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 }
+body {
+  color: white;
+  background: linear-gradient(to top, rgb(1, 0, 8), rgb(4, 4, 4), rgb(6, 6, 6)); 
+}
 
 /* Nav */
-.custom-nav .collapse{
-  justify-content: flex-end;
+
+.container-fluid {
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
+
+.custom-nav .collapse{
+  height: 100%;
+  justify-content: flex-end;
+  background: url('./assets/space.jpeg') rgba(0,0,0,0.6);
+  background-blend-mode:darken;
+  padding: 20px;
+}
+
+.custom-link {
+  color: white; 
+  transition: color 0.2s; 
+}
+
 
 /* Home */
 
 .home {
   color: #ffffff;
+  background: url('./assets/vader.jpeg') rgba(0,0,0,0.85);
+  background-blend-mode:darken;
+  background-size:cover; 
+  background-repeat: no-repeat; 
+  background-position: center;
 }
 
 /* Login */
@@ -40,12 +66,29 @@ body {
 
 /* Gallery */
 
-.imagesGallery {
-  width: 250px; 
-  height: 250px; 
-  border-radius: 10px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  margin: 20px 10px;
-  object-fit: cover;
-  object-position: top center; 
+.contImageGallery {
+  margin-bottom: 50px;
+  width: 500px;
+}
+
+.myImg {
+  background: url('./assets/space.jpeg') rgba(0,0,0,0.6);
+  background-blend-mode:darken;
+  background-size:cover; 
+  background-repeat: no-repeat; 
+  background-position: center;
+}
+
+/* Footer */
+
+.footer {
+  width: 100%;
+  height: 300px;
+  background: url('./assets/space.jpeg') rgba(0,0,0,0.6);
+  background-blend-mode:darken;
+  background-size:cover; 
+  background-repeat: no-repeat; 
+  background-position: center;
+  display: flex;
+  align-items: center;
 }

@@ -7,10 +7,11 @@ import Logout from "./components/Logout";
 import { ToastContainer } from "react-toastify";
 import { Protector } from "./helpers";
 import Gallery from './components/pages/Gallery'
+import Footer from "./components/pages/Footer";
 
 function App() {
   return (
-    <Container>
+    <Container >
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Protector Component={Home} />} />
@@ -19,6 +20,7 @@ function App() {
           <Route path="/registration" element={<Registration />} />
           <Route path="/gallery" element={<Gallery />} />
         </Routes>
+        <Footer />
         <ToastContainer />
       </BrowserRouter>
     </Container>

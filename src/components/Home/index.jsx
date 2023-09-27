@@ -6,7 +6,7 @@ import useFetchData from '../../hooks/useFetchData';
 const Home = () => {
   const {username} = userData();
   const postsData = useFetchData('http://localhost:1337/api/posts?populate=*');
-  console.log(postsData.result);
+  // console.log(postsData.result);
 
   if (postsData.loading) return <p>Loading...</p>;
   if (postsData.error) return <p>Error</p>;
