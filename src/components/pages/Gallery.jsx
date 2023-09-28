@@ -59,11 +59,11 @@ const Gallery = () => {
           <img src={`http://localhost:1337${description.attributes.img.data.attributes.url}`} 
           alt='post image' 
           height={320} 
-          width={400} 
+          width={420} 
           style={{
             borderRadius: '10px', 
             boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)',
-            marginLeft: '150px',
+            marginLeft: '110px',
             marginBottom: '40px',
             marginTop: '30px'
             

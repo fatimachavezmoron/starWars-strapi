@@ -35,8 +35,13 @@ const CustomNav = () => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/galaxy" style={{ color: 'white' }}>
+            <NavLink href="/ships" style={{ color: 'white' }}>
               The Ships
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/droids" style={{ color: 'white' }} >
+              Droids
             </NavLink>
           </NavItem>
           <NavItem>
