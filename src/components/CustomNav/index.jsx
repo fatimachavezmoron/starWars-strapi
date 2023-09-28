@@ -40,8 +40,8 @@ const CustomNav = () => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/droids" style={{ color: 'white' }} >
-              Droids
+            <NavLink href="/upload" style={{ color: 'white' }} >
+              Upload 
             </NavLink>
           </NavItem>
           <NavItem>

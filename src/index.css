@@ -5,6 +5,7 @@
   font-family: 'Poppins', system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  color: white;
 }
 body {
   color: white;
@@ -112,4 +113,33 @@ body {
   background-position: center;
   display: flex;
   align-items: center;
+}
+
+/* Upload */
+
+.uploadCont {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputCont {
+  padding: 120px;
+}
+
+.formCont {
+  width: 500px;
+  height: 500px;
+  background: url('./assets/space.jpeg') rgba(0,0,0,0.6);
+  background-blend-mode:darken;
+  background-size:cover; 
+  background-repeat: no-repeat; 
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(130, 127, 127);
+  border-radius: 10px;
 }

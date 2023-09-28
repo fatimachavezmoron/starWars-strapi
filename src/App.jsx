@@ -10,6 +10,7 @@ import Gallery from './components/pages/Gallery'
 import Footer from "./components/pages/Footer";
 import CustomNav from "./components/CustomNav";
 import Ships from './components/pages/Ships';
+import Upload from "./components/pages/Upload";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/registration" element={<Registration />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/ships" element={<Ships />} />
+          <Route path="/upload" element={<Upload />} />
         </Routes>
         <Footer />
         <ToastContainer />
