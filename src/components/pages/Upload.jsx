@@ -30,8 +30,8 @@ const Upload = () => {
 
     axios.post("http://localhost:1337/api/upload", fileData)
       .then((response) => {
-        const fileId = response.data[0].id;
-        
+        const fileId = response.data.map((file) => file.id);
+        console.log(fileId)
         // 2. Enviar los datos del formulario junto con el ID del archivo a Strapi
         const formData = { data: {} }
         formData.data.title = title;
