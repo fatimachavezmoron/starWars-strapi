@@ -45,6 +45,11 @@ const CustomNav = () => {
             </NavLink>
           </NavItem>
           <NavItem>
+            <NavLink href="/products" style={{ color: 'white' }} >
+              Products
+            </NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink href="/logout" style={{ color: 'white' }} >
               Logout
             </NavLink>
