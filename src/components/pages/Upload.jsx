@@ -1,6 +1,10 @@
 import axios from 'axios';
 import {  Input, Button } from 'reactstrap';
 import { useState } from 'react';
+import { FileUploader } from "react-drag-drop-files";
+
+const fileTypes = ["JPG", "PNG", "GIF"];
+
 
 const Upload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -8,8 +12,9 @@ const Upload = () => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+  const handleFileChange = (file) => {
+    console.log(file)
+    setSelectedFile(file);
   };
 
   const handleFormSubmit = (e) => {
@@ -24,7 +29,6 @@ const Upload = () => {
         const fileId = response.data[0].id;
 
         // 2. Enviar los datos del formulario junto con el ID del archivo a Strapi
-        // let formData = new FormData();
         const formData = { data: {} }
         formData.data.title = title;
         formData.data.description = description;
@@ -51,18 +55,27 @@ const Upload = () => {
       <div className='formCont'>
         <div className='inputCont'>
           <form onSubmit={handleFormSubmit}>
+            <p>Title</p>
             <Input type="text" value={title} 
             onChange={(e) => setTitle(e.target.value)} 
             placeholder="Title" />
             <br />
-            <Input type="text" value={description} 
-            onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
+            <p>Description</p>
+            <textarea
+              value={description}
+              style={{ height: '150px', width: '300px', color: 'black' }} 
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Description"
+              rows={4} 
+              cols={50} 
+            />
             <br />
+            <p>Price</p>
             <Input type="number" value={price} 
             onChange={(e) => setPrice(e.target.value)} placeholder="Price" />
             <br />
-            <Input type="file" 
-            onChange={handleFileChange} style={{ color: 'white', backgroundColor: 'gray' }} />
+            <p>Image</p>
+            <FileUploader handleChange={handleFileChange} types={fileTypes} />
             <br />
             <Button type="submit">Submit</Button>
           </form>
