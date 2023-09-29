@@ -9,7 +9,7 @@ const UploadFiles = () => {
     <div key={product.id} style={{paddingTop:'30px'}}>
       <h1 style={{marginTop:'30px', marginBottom:'30px'}}>{product.attributes.title}</h1>
       <p style={{textAlign:'justify'}}>{product.attributes.description}</p>
-      <p style={{textAlign:'justify'}}>{product.attributes.price}</p>
+      <p style={{textAlign:'justify', fontSize:'24px'}}>€{product.attributes.price},00</p>
       <img src={`http://localhost:1337${product.attributes.image.data[0].attributes.url}`} 
       alt='post image' 
       height={320} 

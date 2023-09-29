@@ -2,8 +2,9 @@ import axios from 'axios';
 import {  Input, Button } from 'reactstrap';
 import { useState } from 'react';
 import { FileUploader } from "react-drag-drop-files";
+import { toast } from 'react-toastify'
 
-const fileTypes = ["JPG", "PNG", "GIF"];
+const fileTypes = ["JPG", "JPEG", "PNG", "GIF"];
 
 
 const Upload = () => {
@@ -11,10 +12,11 @@ const Upload = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false); 
 
   const handleFileChange = (file) => {
-    console.log(file)
     setSelectedFile(file);
+    console.log(file)
   };
 
   const handleFormSubmit = (e) => {
@@ -22,32 +24,48 @@ const Upload = () => {
 
     // 1. Enviar el archivo al servidor Strapi
     let fileData = new FormData();
-    fileData.append("files", selectedFile);
+    for (const key in selectedFile) {
+      fileData.append("files", selectedFile[key])
+    };
 
     axios.post("http://localhost:1337/api/upload", fileData)
       .then((response) => {
         const fileId = response.data[0].id;
-
+        
         // 2. Enviar los datos del formulario junto con el ID del archivo a Strapi
         const formData = { data: {} }
         formData.data.title = title;
         formData.data.description = description;
         formData.data.price = price;
         formData.data.image = fileId;
-
-        console.log('formData', formData)
         
         axios.post("http://localhost:1337/api/products", formData)
           .then((response) => {
-            console.log("Formulario enviado con éxito", response.data);
+            toast.success('Post successfully!', {
+              hideProgressBar: true,
+              theme: "dark",
+              position: toast.POSITION.TOP_CENTER
+            })
           })
           .catch((error) => {
-            console.error("Error al enviar el formulario", error);
+            toast.error("error uploading the form", error);
           });
       })
       .catch((error) => {
-        console.error("Error al subir el archivo", error);
+        toast.error("Error uploading file",{
+          hideProgressBar: true,
+          theme: "dark",
+          position: toast.POSITION.TOP_CENTER
+        }, error);
       });
+  };
+
+  const handleInputChange = () => {
+    if (title && description && price && selectedFile) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
   };
 
   return (
@@ -75,9 +93,11 @@ const Upload = () => {
             onChange={(e) => setPrice(e.target.value)} placeholder="Price" />
             <br />
             <p>Image</p>
-            <FileUploader handleChange={handleFileChange} types={fileTypes} />
+            <FileUploader handleChange={handleFileChange} types={fileTypes} multiple={true} />
             <br />
-            <Button type="submit">Submit</Button>
+            <Button type="submit" 
+            // disabled={!isFormValid}
+            >Submit</Button>
           </form>
         </div>
       </div>
