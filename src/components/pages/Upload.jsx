@@ -1,40 +1,69 @@
-import React, { useState } from 'react';
-import { FormGroup, Label, Input, Button } from 'reactstrap';
+import axios from 'axios';
+import {  Input, Button } from 'reactstrap';
+import { useState } from 'react';
 
 const Upload = () => {
-  const [file, setFile] = useState(null);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
+  // const [title, setTitle] = useState('');
+  // const [description, setDescription] = useState('');
+  // const [price, setPrice] = useState('');
 
   const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  }
+    setSelectedFile(event.target.files[0]);
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Aquí puedes enviar los datos, como file, title, description y price, a través de una solicitud HTTP o realizar la acción deseada.
-  }
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    // 1. Enviar el archivo al servidor Strapi
+    let fileData = new FormData();
+    fileData.append("files", selectedFile);
+
+    axios.post("http://localhost:1337/api/upload", fileData)
+      .then((response) => {
+        console.log(response)
+        const fileId = response.data[0].id;
+
+        // 2. Enviar los datos del formulario junto con el ID del archivo a Strapi
+        let formData = new FormData();
+        // formData.append("title", title);
+        // formData.append("description", description);
+        // formData.append("price", price);
+        formData.append("file", fileId); // Asegúrate de que el campo coincide con el que has definido en tu modelo
+
+        // axios.post("http://localhost:1337/api/products", formData)
+        //   .then((response) => {
+        //     console.log("Formulario enviado con éxito", response.data);
+        //   })
+        //   .catch((error) => {
+        //     console.error("Error al enviar el formulario", error);
+        //   });
+      })
+      .catch((error) => {
+        console.error("Error al subir el archivo", error);
+      });
+  };
 
   return (
     <div className='uploadCont'>
       <div className='formCont'>
         <div className='inputCont'>
-          <FormGroup onSubmit={handleSubmit}>
-            <Label for="title">Title</Label>
-            <Input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-
-            <Label for="description">Description</Label>
-            <Input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
-
-            <Label for="price">Price</Label>
-            <Input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} />
-
-            <Label for="file">Image</Label>
-            <Input type="file" id="file" onChange={handleFileChange} />
-
+          <form onSubmit={handleFormSubmit}>
+            {/* <Input type="text" value={title} 
+            onChange={(e) => setTitle(e.target.value)} 
+            placeholder="Title" />
+            <br />
+            <Input type="text" value={description} 
+            onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
+            <br />
+            <Input type="number" value={price} 
+            onChange={(e) => setPrice(e.target.value)} placeholder="Price" />
+            <br /> */}
+            <Input type="file" 
+            onChange={handleFileChange} style={{ color: 'white', backgroundColor: 'gray' }} />
+            <br />
             <Button type="submit">Submit</Button>
-          </FormGroup>
+          </form>
         </div>
       </div>
     </div>
