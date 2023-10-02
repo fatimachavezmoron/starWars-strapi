@@ -1,15 +1,12 @@
-
-import { userData } from '../../helpers';
 import useFetchData from '../../hooks/useFetchData';
 
 const Home = () => {
-  const {username} = userData();
+  const username = localStorage.getItem('user')
   const postsData = useFetchData('http://localhost:1337/api/posts?populate=*');
 
   if (postsData.loading) return <p>Loading...</p>;
   if (postsData.error) return <p>Error</p>;
   
-
   return (
     <>
       <div className='home'>

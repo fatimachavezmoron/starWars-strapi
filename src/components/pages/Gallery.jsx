@@ -29,7 +29,6 @@ const Gallery = () => {
       }
 
     })();
-
   }, [])
 
   
@@ -65,8 +64,7 @@ const Gallery = () => {
             boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)',
             marginLeft: '110px',
             marginBottom: '40px',
-            marginTop: '30px'
-            
+            marginTop: '30px' 
           }}
           />
         </div>
