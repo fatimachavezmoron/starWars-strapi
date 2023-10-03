@@ -55,7 +55,8 @@ const Gallery = () => {
         <div key={description.id} style={{paddingTop:'30px'}}>
           <h1>{description.attributes.title}</h1>
           <p style={{textAlign:'justify'}}>{description.attributes.about}</p>
-          <img src={`http://localhost:1337${description.attributes.img.data.url}`} 
+          <img src={`http://localhost:1337${description.attributes.img.data[0].attributes.url}`} 
+
           alt='post image' 
           height={320} 
           width={420} 
